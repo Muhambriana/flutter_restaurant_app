@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_restaurant_app/util.dart';
 import 'package:flutter_restaurant_app/utils/routes.dart';
 import 'package:flutter_restaurant_app/utils/strings.dart';
 
@@ -11,38 +12,35 @@ class RestaurantApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return MaterialApp(
       title: Strings.appName,
-      theme: _buildLightTheme(),
-      darkTheme: _buildDarkTheme(),
+      theme: _buildTheme(context, Brightness.light, Colors.blue),
+      darkTheme: _buildTheme(context, Brightness.dark, Colors.cyan),
       themeMode: ThemeMode.system,
       initialRoute: Routes.home,
-      routes: Routes.routes
+      routes: Routes.routes,
     );
   }
 
-  ThemeData _buildLightTheme() {
-    return ThemeData(
-      brightness: Brightness.light,
-      fontFamily: 'Poppins',
-      colorScheme: ColorScheme.fromSeed(
-        seedColor: Colors.deepPurple,
-        brightness: Brightness.light,
-      ),
-      useMaterial3: true,
-    );
-  }
+  ThemeData _buildTheme(BuildContext context, Brightness brightness, Color seedColor) {
+    final textTheme = createTextTheme(context, "Poppins", "Poppins");
 
-  ThemeData _buildDarkTheme() {
+    final colorScheme = ColorScheme.fromSeed(
+      seedColor: seedColor,
+      brightness: brightness,
+    );
+
     return ThemeData(
-      brightness: Brightness.dark,
-      fontFamily: 'Poppins',
-      colorScheme: ColorScheme.fromSeed(
-        seedColor: Colors.deepPurple,
-        brightness: Brightness.dark,
+      brightness: brightness,
+      textTheme: textTheme.apply(
+        bodyColor: colorScheme.onSurface,
+        displayColor: colorScheme.onSurface,
       ),
+      colorScheme: colorScheme,
       useMaterial3: true,
     );
   }
 }
+
 
