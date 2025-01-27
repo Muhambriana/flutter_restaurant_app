@@ -1,10 +1,27 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_restaurant_app/data/api/api_services.dart';
+import 'package:flutter_restaurant_app/provider/list/restaurant_list_provider.dart';
 import 'package:flutter_restaurant_app/util.dart';
-import 'package:flutter_restaurant_app/utils/routes.dart';
+import 'package:flutter_restaurant_app/static/routes.dart';
 import 'package:flutter_restaurant_app/utils/strings.dart';
+import 'package:provider/provider.dart';
 
 void main() {
-  runApp(const RestaurantApp());
+  runApp(
+    MultiProvider(
+      providers: [
+        Provider(
+            create: (context) => ApiServices(),
+        ),
+        ChangeNotifierProvider(
+            create: (context) => RestaurantListProvider(
+              context.read()<ApiServices>(),
+            ),
+        ),
+      ],
+      child: const RestaurantApp(),
+    ),
+  );
 }
 
 class RestaurantApp extends StatelessWidget {
@@ -18,7 +35,7 @@ class RestaurantApp extends StatelessWidget {
       theme: _buildTheme(context, Brightness.light, Colors.blue),
       darkTheme: _buildTheme(context, Brightness.dark, Colors.cyan),
       themeMode: ThemeMode.system,
-      initialRoute: Routes.home,
+      initialRoute: Routes.restaurantList,
       routes: Routes.routes,
     );
   }
