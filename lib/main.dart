@@ -13,10 +13,11 @@ void main() {
         Provider(
             create: (context) => ApiServices(),
         ),
-        ChangeNotifierProvider(
-            create: (context) => RestaurantListProvider(
-              context.read()<ApiServices>(),
-            ),
+        ChangeNotifierProvider<RestaurantListProvider>(
+          create: (context) {
+            final apiServices = context.read<ApiServices>();
+            return RestaurantListProvider(apiServices);
+          },
         ),
       ],
       child: const RestaurantApp(),
