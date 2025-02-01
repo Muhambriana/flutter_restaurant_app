@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_restaurant_app/data/api/api_services.dart';
-import 'package:flutter_restaurant_app/provider/detail/restaurant_detail_provider.dart';
-import 'package:flutter_restaurant_app/provider/list/restaurant_list_provider.dart';
+import 'package:flutter_restaurant_app/static/restaurant_app_providers.dart';
 import 'package:flutter_restaurant_app/util.dart';
 import 'package:flutter_restaurant_app/static/routes.dart';
 import 'package:flutter_restaurant_app/utils/strings.dart';
@@ -10,23 +8,7 @@ import 'package:provider/provider.dart';
 void main() {
   runApp(
     MultiProvider(
-      providers: [
-        Provider(
-            create: (context) => ApiServices(),
-        ),
-        ChangeNotifierProvider<RestaurantListProvider>(
-          create: (context) {
-            final apiServices = context.read<ApiServices>();
-            return RestaurantListProvider(apiServices);
-          },
-        ),
-        ChangeNotifierProvider<RestaurantDetailProvider>(
-            create: (context) {
-              final apiServices = context.read<ApiServices>();
-              return RestaurantDetailProvider(apiServices);
-            },
-        )
-      ],
+      providers: RestaurantAppProviders.getProviders(),
       child: const RestaurantApp(),
     ),
   );
