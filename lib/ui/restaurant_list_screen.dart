@@ -37,8 +37,8 @@ class _RestaurantListScreenState extends State<RestaurantListScreen> {
           builder: (context, value, child) {
             return switch (value.resultState) {
               RestaurantListLoadingState() => LoadingView(),
-              RestaurantListLoadedState(data: var restaurantList) => _listView(restaurantList),
               RestaurantListErrorState(error: var message) => ErrorMessage(message: message),
+              RestaurantListLoadedState(data: var restaurantList) => _listView(restaurantList),
               _ => const SizedBox(),
             };
           }

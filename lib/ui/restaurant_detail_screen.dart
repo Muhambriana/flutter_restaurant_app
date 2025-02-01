@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_restaurant_app/static/restaurant_list_result_state.dart';
+import 'package:flutter_restaurant_app/provider/detail/restaurant_detail_provider.dart';
+import 'package:flutter_restaurant_app/static/restaurant_detail_result_state.dart';
+import 'package:flutter_restaurant_app/ui/widget/error_message.dart';
+import 'package:flutter_restaurant_app/ui/widget/loading_view.dart';
 import 'package:provider/provider.dart';
-import 'package:flutter_restaurant_app/provider/list/restaurant_list_provider.dart';
 
 class RestaurantDetailScreen extends StatefulWidget {
   final String restaurantId;
@@ -21,7 +23,7 @@ class _RestaurantDetailScreenState extends State<RestaurantDetailScreen> {
   void initState() {
     super.initState();
     Future.microtask(() {
-      context.read<RestaurantListProvider>().fetchRestaurantList();
+      context.read<RestaurantDetailProvider>().fetchRestaurantDetail(widget.restaurantId);
     });
   }
 
@@ -31,7 +33,16 @@ class _RestaurantDetailScreenState extends State<RestaurantDetailScreen> {
       appBar: AppBar(
         title: Text(RestaurantDetailScreen.title),
       ),
-      body: Text(widget.restaurantId),
+      body: Consumer<RestaurantDetailProvider>(
+          builder: (context, value, child) {
+            return switch (value.resultState) {
+              RestaurantDetailLoadingState() => LoadingView(),
+              RestaurantDetailErrorState(error: var message) => ErrorMessage(message: message),
+              RestaurantDetailLoadedState(data: var restaurant) => Text(restaurant.name),
+              _ => SizedBox()
+            };
+          }
+      ),
     );
   }
 }

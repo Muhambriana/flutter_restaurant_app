@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_restaurant_app/data/api/api_services.dart';
+import 'package:flutter_restaurant_app/provider/detail/restaurant_detail_provider.dart';
 import 'package:flutter_restaurant_app/provider/list/restaurant_list_provider.dart';
 import 'package:flutter_restaurant_app/util.dart';
 import 'package:flutter_restaurant_app/static/routes.dart';
@@ -19,6 +20,12 @@ void main() {
             return RestaurantListProvider(apiServices);
           },
         ),
+        ChangeNotifierProvider<RestaurantDetailProvider>(
+            create: (context) {
+              final apiServices = context.read<ApiServices>();
+              return RestaurantDetailProvider(apiServices);
+            },
+        )
       ],
       child: const RestaurantApp(),
     ),
