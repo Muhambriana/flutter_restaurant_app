@@ -8,12 +8,21 @@ class SearchRestaurantsProvider extends ChangeNotifier {
 
   SearchRestaurantsProvider(this._apiServices);
 
+  String _restaurantName = "";
   RestaurantListResultState _resultState = RestaurantListNoneState();
 
+  String get restaurantName => _restaurantName;
   RestaurantListResultState get resultState => _resultState;
 
   Future<void> searchRestaurantList(String restaurantName) async {
     try {
+
+      _restaurantName = restaurantName;
+      if (restaurantName.isEmpty) {
+        notifyListeners();
+        return;
+      }
+
       _resultState = RestaurantListLoadingState();
       notifyListeners();
 
