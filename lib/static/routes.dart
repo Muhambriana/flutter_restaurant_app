@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../ui/restaurant_detail_screen.dart';
-import '../ui/restaurant_list_screen.dart';
+import '../ui/detail/restaurant_detail_screen.dart';
+import '../ui/home/restaurant_list_screen.dart';
 
 class Routes {
   static const restaurantList = RestaurantListScreen.routeName;
