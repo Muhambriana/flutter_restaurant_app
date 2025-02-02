@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_restaurant_app/data/model/restaurant.dart';
-import 'package:flutter_restaurant_app/ui/widget/restaurant_card.dart';
+import 'package:flutter_restaurant_app/ui/home/restaurant_card.dart';
 
 import '../detail/restaurant_detail_screen.dart';
 
 class RestaurantList extends StatelessWidget {
-  const RestaurantList({super.key, required this.listRestaurant});
+  const RestaurantList({super.key, required this.restaurantList});
 
-  final List<Restaurant> listRestaurant;
+  final List<Restaurant> restaurantList;
 
   @override
   Widget build(BuildContext context) {
@@ -15,9 +15,9 @@ class RestaurantList extends StatelessWidget {
       color: Colors.black,
       child: ListView.builder(
         padding: EdgeInsets.zero,
-        itemCount: listRestaurant.length,  // Use the correct variable here
+        itemCount: restaurantList.length,  // Use the correct variable here
         itemBuilder: (context, index) {
-          final restaurant = listRestaurant[index];  // Use the correct variable here
+          final restaurant = restaurantList[index];  // Use the correct variable here
 
           return RestaurantCard(
             onTap: () {

@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_restaurant_app/data/model/restaurant.dart';
 import 'package:flutter_restaurant_app/static/restaurant_list_result_state.dart';
-import 'package:flutter_restaurant_app/ui/detail/restaurant_detail_screen.dart';
-import 'package:flutter_restaurant_app/ui/widget/restaurant_list.dart';
+import 'package:flutter_restaurant_app/ui/home/restaurant_list.dart';
 import 'package:flutter_restaurant_app/ui/widget/error_message.dart';
 import 'package:flutter_restaurant_app/ui/widget/loading_view.dart';
 import 'package:flutter_restaurant_app/ui/widget/notification_button.dart';
@@ -11,17 +9,16 @@ import 'package:flutter_restaurant_app/utils/app_colors.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_restaurant_app/provider/list/restaurant_list_provider.dart';
 
-class RestaurantListScreen extends StatefulWidget {
+class HomeScreen extends StatefulWidget {
   static const routeName = '/restaurant_list';
-  static const title = 'List';
 
-  const RestaurantListScreen({super.key});
+  const HomeScreen({super.key});
 
   @override
-  State<RestaurantListScreen> createState() => _RestaurantListScreenState();
+  State<HomeScreen> createState() => _HomeScreenState();
 }
 
-class _RestaurantListScreenState extends State<RestaurantListScreen> {
+class _HomeScreenState extends State<HomeScreen> {
 
   @override
   void initState() {
@@ -45,7 +42,7 @@ class _RestaurantListScreenState extends State<RestaurantListScreen> {
                     return switch (value.resultState) {
                       RestaurantListLoadingState() => LoadingView(),
                       RestaurantListErrorState(error: var message) => ErrorMessage(message: message),
-                      RestaurantListLoadedState(data: var restaurantList) => RestaurantList(listRestaurant: restaurantList),
+                      RestaurantListLoadedState(data: var restaurantList) => RestaurantList(restaurantList: restaurantList),
                       _ => const SizedBox(),
                     };
                   }

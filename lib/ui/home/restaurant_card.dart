@@ -16,7 +16,7 @@ class RestaurantCard extends StatelessWidget {
     return InkWell(
       onTap: onTap,
       child: Card(
-        color: Colors.amber,
+        color: Colors.green,
         child: Text(restaurant.name, style: TextStyle(fontSize: 50),),
       ),
     );

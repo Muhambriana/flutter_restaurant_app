@@ -25,7 +25,7 @@ class RestaurantApp extends StatelessWidget {
       theme: _buildTheme(context, Brightness.light, Colors.blue),
       darkTheme: _buildTheme(context, Brightness.dark, Colors.cyan),
       themeMode: ThemeMode.system,
-      initialRoute: Routes.restaurantList,
+      initialRoute: Routes.mainScreen,
       routes: Routes.routes,
     );
   }
