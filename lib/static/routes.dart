@@ -7,7 +7,7 @@ class Routes {
   static const mainScreen = MainScreen.routeName;
 
   static Map<String, WidgetBuilder> get routes => {
-    MainScreen.routeName: (context) => const MainScreen(),
+    MainScreen.routeName: (context) => MainScreen(),
     HomeScreen.routeName: (context) => const HomeScreen(),
     RestaurantDetailScreen.routeName: (context) => RestaurantDetailScreen(
       restaurantId: ModalRoute.of(context)?.settings.arguments as String,
