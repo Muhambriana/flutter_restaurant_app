@@ -33,12 +33,14 @@ class _HomeScreenState extends State<HomeScreen>  with AutomaticKeepAliveClientM
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.all(10.0),
         child: Column(
           children: [
             AppBar(),
+            SizedBox(height: 20,),
             Expanded(
               child: Consumer<RestaurantListProvider>(
                   builder: (context, value, child) {

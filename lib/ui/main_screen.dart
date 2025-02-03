@@ -48,6 +48,13 @@ class MainScreen extends StatelessWidget {
             onTap: value.onTap,
             items: bottomNavList,
           ),
+          floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+          floatingActionButton: FloatingActionButton(
+            backgroundColor: Colors.white,
+            onPressed: () {},
+            tooltip: 'Search Restaurant',
+            child: RestaurantIcon(Icons.search_rounded),
+          ),
         )
     );
   }
