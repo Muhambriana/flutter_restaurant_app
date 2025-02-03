@@ -21,6 +21,7 @@ class RestaurantApp extends StatelessWidget {
   Widget build(BuildContext context) {
 
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: Strings.appName,
       theme: _buildTheme(context, Brightness.light, Colors.blue),
       darkTheme: _buildTheme(context, Brightness.dark, Colors.cyan),
