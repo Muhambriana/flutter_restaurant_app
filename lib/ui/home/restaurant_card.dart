@@ -29,7 +29,12 @@ class RestaurantCard extends StatelessWidget {
                     borderRadius: BorderRadius.circular(10.0),
                     child: CachedNetworkImage(
                       imageUrl: 'https://pikaso.cdnpk.net/private/production/1235478040/render.jpeg?token=exp=1763078400~hmac=0362c7bc4eeec5940e2e9a9030a4ef379f0ead9af96087755160b4ea4641c621',
-                      placeholder: (context, url) => CircularProgressIndicator(),
+                      placeholder: (context, url) => Center(
+                          child: Padding(
+                              padding: EdgeInsets.all(5),
+                              child: CircularProgressIndicator()
+                          )
+                      ),
                       errorWidget: (context, url, error) => Icon(Icons.error),
                     ),
                   ),
