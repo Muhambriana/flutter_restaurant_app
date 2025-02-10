@@ -85,6 +85,7 @@ class RestaurantCard extends StatelessWidget {
             ),
           ],
         ),
+        SizedBox(height: 10,),
         _place(),
         _desc(),
       ],
