@@ -27,54 +27,12 @@ class RestaurantCard extends StatelessWidget {
             children: [
               Expanded(
                   flex: 1,
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(10.0),
-                    child: CachedNetworkImage(
-                      imageUrl: '${NetworkInfo.baseUrlImage}/${restaurant.pictureId}',
-                      placeholder: (context, url) => Center(
-                          child: Padding(
-                              padding: EdgeInsets.all(5),
-                              child: CircularProgressIndicator()
-                          )
-                      ),
-                      errorWidget: (context, url, error) => Icon(
-                          Icons.broken_image_rounded,
-                          color: Colors.grey,
-                          size: 30,
-                      ),
-                    ),
-                  ),
+                  child: _restaurantImageItem(),
               ),
               SizedBox(width: 10),
               Expanded(
                   flex: 2,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Expanded(
-                              flex: 3,
-                              child: Text(
-                                  restaurant.name,
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 15
-                                  ),
-                              )
-                          ),
-                          Expanded(
-                              flex: 1,
-                              child: _rating()
-                          ),
-                        ],
-                      ),
-                      _place(),
-                      _desc(),
-                    ],
-                  )
+                  child: _restaurantContentItem(),
               )
             ],
           ),
@@ -82,6 +40,57 @@ class RestaurantCard extends StatelessWidget {
       ),
     );
   }
+
+  Widget _restaurantImageItem() {
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(10.0),
+      child: CachedNetworkImage(
+        imageUrl: '${NetworkInfo.baseUrlImage}/${restaurant.pictureId}',
+        placeholder: (context, url) => Center(
+            child: Padding(
+                padding: EdgeInsets.all(5),
+                child: CircularProgressIndicator()
+            )
+        ),
+        errorWidget: (context, url, error) => Icon(
+          Icons.broken_image_rounded,
+          color: Colors.grey,
+          size: 30,
+        ),
+      ),
+    );
+  }
+
+  Widget _restaurantContentItem() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Expanded(
+                flex: 3,
+                child: Text(
+                  restaurant.name,
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 15
+                  ),
+                )
+            ),
+            Expanded(
+                flex: 1,
+                child: _rating()
+            ),
+          ],
+        ),
+        _place(),
+        _desc(),
+      ],
+    );
+  }
+
 
   Widget _rating() {
     return IconAndText(
@@ -94,7 +103,7 @@ class RestaurantCard extends StatelessWidget {
   Widget _place() {
     return IconAndText(
       text: restaurant.city,
-      icon: Icons.location_on_outlined,
+      icon: Icons.pin_drop,
     );
   }
 
@@ -104,6 +113,7 @@ class RestaurantCard extends StatelessWidget {
         icon: Icons.short_text_rounded,
     );
   }
+
 }
 
 class IconAndText extends StatelessWidget {
