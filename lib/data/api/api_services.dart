@@ -1,12 +1,13 @@
 import 'dart:convert';
 
+import 'package:flutter_restaurant_app/data/api/network_info.dart';
 import 'package:flutter_restaurant_app/data/model/restaurant_detail_response.dart';
 import 'package:flutter_restaurant_app/data/model/restaurant_list_response.dart';
 import 'package:flutter_restaurant_app/data/model/search_restaurants_response.dart';
 import 'package:http/http.dart' as http;
 
 class ApiServices {
-  static const String _baseUrl = "https://restaurant-api.dicoding.dev";
+  final String _baseUrl = NetworkInfo.baseUrl;
 
   Future<RestaurantListResponse> getRestaurantList() async {
     final response = await http.get(Uri.parse("$_baseUrl/list"));

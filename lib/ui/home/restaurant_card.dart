@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_restaurant_app/data/api/network_info.dart';
 import 'package:flutter_restaurant_app/data/model/restaurant.dart';
 import 'package:flutter_restaurant_app/utils/app_colors.dart';
 
@@ -29,25 +30,22 @@ class RestaurantCard extends StatelessWidget {
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(10.0),
                     child: CachedNetworkImage(
-                      imageUrl: 'https://pikaso.cdnpk.net/private/production/1235478040/render.jpeg?token=exp=1763078400~hmac=0362c7bc4eeec5940e2e9a9030a4ef379f0ead9af96087755160b4ea4641c621',
+                      imageUrl: '${NetworkInfo.baseUrlImage}/${restaurant.pictureId}',
                       placeholder: (context, url) => Center(
                           child: Padding(
                               padding: EdgeInsets.all(5),
                               child: CircularProgressIndicator()
                           )
                       ),
-                      errorWidget: (context, url, error) => Icon(Icons.error),
-                      imageBuilder: (context, imageProvider) {
-                        return Container(
-                          decoration: BoxDecoration(
-                            image: DecorationImage(image: imageProvider, fit: BoxFit.fill),
-                          ),
-                        );
-                      },
+                      errorWidget: (context, url, error) => Icon(
+                          Icons.broken_image_rounded,
+                          color: Colors.grey,
+                          size: 30,
+                      ),
                     ),
                   ),
               ),
-              SizedBox(width: 5),
+              SizedBox(width: 10),
               Expanded(
                   flex: 2,
                   child: Column(
