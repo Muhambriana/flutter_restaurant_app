@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_restaurant_app/data/model/restaurant.dart';
+import 'package:flutter_restaurant_app/utils/app_colors.dart';
 
 class RestaurantCard extends StatelessWidget {
   const RestaurantCard({
@@ -17,7 +18,7 @@ class RestaurantCard extends StatelessWidget {
     return InkWell(
       onTap: onTap,
       child: Card(
-        color: Colors.green,
+        color: Colors.white,
         child: Padding(
           padding: const EdgeInsets.all(10),
           child: Row(
@@ -36,6 +37,13 @@ class RestaurantCard extends StatelessWidget {
                           )
                       ),
                       errorWidget: (context, url, error) => Icon(Icons.error),
+                      imageBuilder: (context, imageProvider) {
+                        return Container(
+                          decoration: BoxDecoration(
+                            image: DecorationImage(image: imageProvider, fit: BoxFit.fill),
+                          ),
+                        );
+                      },
                     ),
                   ),
               ),
@@ -52,7 +60,7 @@ class RestaurantCard extends StatelessWidget {
                           Expanded(
                               flex: 3,
                               child: Text(
-                                  'Name',
+                                  restaurant.name,
                                   style: TextStyle(
                                     fontWeight: FontWeight.bold,
                                     fontSize: 15
@@ -61,12 +69,12 @@ class RestaurantCard extends StatelessWidget {
                           ),
                           Expanded(
                               flex: 1,
-                              child: Text('Rating')
+                              child: _rating()
                           ),
                         ],
                       ),
-                      Text('Place'),
-                      Text('Desc'),
+                      _place(),
+                      _desc(),
                     ],
                   )
               )
@@ -76,4 +84,64 @@ class RestaurantCard extends StatelessWidget {
       ),
     );
   }
+
+  Widget _rating() {
+    return IconAndText(
+      text: restaurant.rating.toString(),
+      icon: Icons.star_rate_rounded,
+      color: Colors.amber,
+    );
+  }
+
+  Widget _place() {
+    return IconAndText(
+      text: restaurant.city,
+      icon: Icons.location_on_outlined,
+    );
+  }
+
+  Widget _desc() {
+    return IconAndText(
+        text: restaurant.description,
+        icon: Icons.short_text_rounded,
+    );
+  }
 }
+
+class IconAndText extends StatelessWidget {
+  const IconAndText({
+    super.key,
+    required this.text,
+    required this.icon,
+    this.color,
+  });
+
+  final String text;
+  final IconData icon;
+  final Color? color;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        Icon(
+          icon,
+          // If color not set, then give default value
+          color: color ?? AppColors.primaryColor,
+        ),
+        Expanded(
+          flex: 1,
+          child: Text(
+            text,
+            overflow: TextOverflow.ellipsis,
+            style: TextStyle(
+                color: AppColors.nonPrimaryText(context),
+                fontSize: 15
+            ),
+          ),
+        )
+      ],
+    );
+  }
+}
+
