@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_restaurant_app/provider/detail/restaurant_detail_provider.dart';
 import 'package:flutter_restaurant_app/static/restaurant_detail_result_state.dart';
-import 'package:flutter_restaurant_app/ui/widget/error_message.dart';
-import 'package:flutter_restaurant_app/ui/widget/loading_view.dart';
+import 'package:flutter_restaurant_app/ui/widget/general/error_message.dart';
+import 'package:flutter_restaurant_app/ui/widget/general/loading_view.dart';
 import 'package:provider/provider.dart';
 
 class RestaurantDetailScreen extends StatefulWidget {

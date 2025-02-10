@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_restaurant_app/static/restaurant_list_result_state.dart';
-import 'package:flutter_restaurant_app/ui/home/restaurant_list.dart';
-import 'package:flutter_restaurant_app/ui/widget/error_message.dart';
-import 'package:flutter_restaurant_app/ui/widget/loading_view.dart';
-import 'package:flutter_restaurant_app/ui/widget/notification_button.dart';
-import 'package:flutter_restaurant_app/ui/widget/restaurant_button.dart';
+import 'package:flutter_restaurant_app/ui/widget/restaurant/restaurant_list.dart';
+import 'package:flutter_restaurant_app/ui/widget/general/error_message.dart';
+import 'package:flutter_restaurant_app/ui/widget/general/loading_view.dart';
+import 'package:flutter_restaurant_app/ui/widget/general/notification_button.dart';
+import 'package:flutter_restaurant_app/ui/widget/general/restaurant_button.dart';
 import 'package:flutter_restaurant_app/utils/app_colors.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_restaurant_app/provider/list/restaurant_list_provider.dart';
