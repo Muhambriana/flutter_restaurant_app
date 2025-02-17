@@ -11,6 +11,26 @@ class RestaurantSearchBar extends StatefulWidget {
 
 class _RestaurantSearchBarState extends State<RestaurantSearchBar> {
   final TextEditingController _controller = TextEditingController();
+  bool _showClearIcon = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller.addListener(_updateClearIcon);
+  }
+
+  @override
+  void dispose() {
+    _controller.removeListener(_updateClearIcon);
+    _controller.dispose();
+    super.dispose();
+  }
+
+  void _updateClearIcon() {
+    setState(() {
+      _showClearIcon = _controller.text.isNotEmpty;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -33,13 +53,15 @@ class _RestaurantSearchBarState extends State<RestaurantSearchBar> {
                 onChanged: widget.onQueryChanged, // Callback on text change
               ),
             ),
-            if (_controller.text.isNotEmpty)
+            if (_showClearIcon)
               IconButton(
                 icon: const Icon(Icons.clear, color: Colors.grey),
                 onPressed: () {
                   _controller.clear();
                   widget.onQueryChanged('');
-                  setState(() {}); // Refresh UI
+                  setState(() {
+                    _showClearIcon = false;
+                  });
                 },
               ),
           ],
@@ -48,5 +70,4 @@ class _RestaurantSearchBarState extends State<RestaurantSearchBar> {
     );
   }
 }
-
 

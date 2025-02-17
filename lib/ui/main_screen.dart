@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_restaurant_app/ui/search/search_retaurant_screen.dart';
 import 'package:flutter_restaurant_app/ui/widget/general/restaurant_icon.dart';
 import 'package:provider/provider.dart';
 
@@ -51,7 +52,12 @@ class MainScreen extends StatelessWidget {
           floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
           floatingActionButton: FloatingActionButton(
             backgroundColor: Colors.white,
-            onPressed: () {},
+            onPressed: () {
+              Navigator.pushNamed(
+                context,
+                SearchRestaurantScreen.routeName
+              );
+            },
             tooltip: 'Search Restaurant',
             child: RestaurantIcon(Icons.search_rounded),
           ),

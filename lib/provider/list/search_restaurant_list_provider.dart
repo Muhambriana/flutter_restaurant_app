@@ -3,10 +3,10 @@ import 'package:flutter/widgets.dart';
 import '../../../data/api/api_services.dart';
 import '../../../static/restaurant_list_result_state.dart';
 
-class SearchRestaurantsProvider extends ChangeNotifier {
+class SearchRestaurantListProvider extends ChangeNotifier {
   final ApiServices _apiServices;
 
-  SearchRestaurantsProvider(this._apiServices);
+  SearchRestaurantListProvider(this._apiServices);
 
   RestaurantListResultState _resultState = RestaurantListNoneState();
 

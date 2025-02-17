@@ -23,8 +23,8 @@ class RestaurantAppProviders {
         create: (context) => RestaurantDetailProvider(context.read<ApiServices>()),
       ),
 
-      ChangeNotifierProvider<SearchRestaurantsProvider>(
-        create: (context) => SearchRestaurantsProvider(context.read<ApiServices>()),
+      ChangeNotifierProvider<SearchRestaurantListProvider>(
+        create: (context) => SearchRestaurantListProvider(context.read<ApiServices>()),
       ),
     ];
   }
