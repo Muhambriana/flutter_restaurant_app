@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_restaurant_app/provider/list/search_restaurant_list_provider.dart';
 import 'package:flutter_restaurant_app/static/restaurant_list_result_state.dart';
+import 'package:flutter_restaurant_app/ui/widget/general/back_button.dart';
 import 'package:flutter_restaurant_app/ui/widget/restaurant/restaurant_list.dart';
 import 'package:flutter_restaurant_app/ui/widget/general/error_message.dart';
 import 'package:flutter_restaurant_app/ui/widget/general/loading_view.dart';
@@ -56,11 +57,24 @@ class AppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child:  RestaurantSearchBar(
-        onQueryChanged: (query) {
-          context.read<SearchRestaurantListProvider>().searchRestaurantList(query);
-        },
-      ),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Expanded(
+              flex: 1,
+              child: BackButtonRestaurant()
+          ),
+          SizedBox(width: 10,),
+          Expanded(
+              flex: 8,
+              child: RestaurantSearchBar(
+                onQueryChanged: (query) {
+                  context.read<SearchRestaurantListProvider>().searchRestaurantList(query);
+                },
+              ),
+          )
+        ],
+      )
     );
   }
 }
