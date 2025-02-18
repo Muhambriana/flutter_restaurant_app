@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_restaurant_app/data/api/network_info.dart';
 import 'package:flutter_restaurant_app/data/model/restaurant.dart';
 import 'package:flutter_restaurant_app/utils/app_colors.dart';
+import '../general/error_image.dart';
 
 class RestaurantCard extends StatelessWidget {
   const RestaurantCard({
@@ -52,11 +53,7 @@ class RestaurantCard extends StatelessWidget {
                 child: CircularProgressIndicator()
             )
         ),
-        errorWidget: (context, url, error) => Icon(
-          Icons.broken_image_rounded,
-          color: Colors.grey,
-          size: 30,
-        ),
+        errorWidget: (context, url, error) => ErrorImage(),
       ),
     );
   }
