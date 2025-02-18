@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../../../utils/app_colors.dart';
 
 class RestaurantButton extends StatelessWidget {
@@ -17,16 +16,18 @@ class RestaurantButton extends StatelessWidget {
           gradient: const LinearGradient(
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
-            colors: AppColors.blueGradient, // Gradient colors
+            colors: AppColors.blueGradient,  // Example gradient colors
           ),
           borderRadius: BorderRadius.circular(12), // Rounded corners
         ),
         child: Padding(
           padding: const EdgeInsets.all(10.0), // Adjust padding as needed
-          child: Icon(
-            icon,
-            size: 24, // Adjust icon size
-            color: Colors.white, // Icon color
+          child: FittedBox(
+            fit: BoxFit.scaleDown, // Ensures the icon scales properly
+            child: Icon(
+              icon,
+              color: Colors.white, // Icon color
+            ),
           ),
         ),
       ),
